@@ -1,10 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <NavBar />
+  <Home />
+  <About />
+  <ServicesView />
 </template>
+
+<script>
+// @ is an alias to /src
+import NavBar from "@/components/nav.vue";
+import Home from "@/views/HomeView.vue";
+import About from "@/views/AboutView.vue";
+import ServicesView from "@/views/ServicesView.vue";
+
+export default {
+  name: "HomeView",
+  components: {
+    NavBar,
+    Home,
+    About,
+    ServicesView,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -17,12 +34,15 @@
 
 nav {
   padding: 30px;
+  margin-right: 5px;
 
   a {
     font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
+      margin-right: 5px;
+
       color: #42b983;
     }
   }
