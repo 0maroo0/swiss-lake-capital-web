@@ -1,13 +1,34 @@
 <template>
-  <div class="our-number">
-    <div class="card-container">
-      <div class="card" v-for="client in clients" :key="client.id">
-        <img src="../assets/happyClint.png" alt="Image" class="card-image" />
-        <h3 class="card-title">{{ client.title }}</h3>
-        <p class="client-number">{{ animatedCount }}</p>
-        <button class="contact-button">
-          Our Percent: {{ client.percent }}%
-        </button>
+  <div class="calculator">
+    <h2>Investment Calculator</h2>
+    <div class="slider-container">
+      <label for="amount">Select Amount:</label>
+      <input
+        type="range"
+        id="amount"
+        v-model="amount"
+        min="100000"
+        max="100000000"
+        step="100000"
+        @input="calculateReturns"
+      />
+      <span class="amount-display">${{ amount.toLocaleString() }}</span>
+    </div>
+    <div class="results">
+      <h3>Returns</h3>
+      <div class="return-box">
+        <p>
+          Annual Return (17%):
+          <span class="highlight">${{ annualReturn.toLocaleString() }}</span>
+          per year
+        </p>
+      </div>
+      <div class="return-box">
+        <p>
+          Monthly Return:
+          <span class="highlight">${{ monthlyReturn.toLocaleString() }}</span>
+          per month
+        </p>
       </div>
     </div>
   </div>
@@ -15,217 +36,131 @@
 
 <script>
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Calculator",
   data() {
     return {
-      clients: [
-        {
-          id: 1,
-          title: "Happy Client 1",
-          number: 100,
-          image: "../assets/happyClint.png",
-          percent: 17,
-        },
-        {
-          id: 2,
-          title: "Happy Client 2",
-          number: 200,
-          image: "../assets/percentAward.png",
-          percent: 25,
-        },
-        {
-          id: 1,
-          title: "Happy Client 1",
-          number: 100,
-          image: "../assets/happyClint.png",
-          percent: 17,
-        },
-        {
-          id: 2,
-          title: "Happy Client 2",
-          number: 200,
-          image: "../assets/percentAward.png",
-          percent: 25,
-        },
-      ],
-      animatedCount: 0,
-      animationDuration: 2000, // Animation duration in milliseconds
+      amount: 100000, // Default starting amount
+      annualReturn: 0,
+      monthlyReturn: 0,
     };
   },
   methods: {
-    animateNumber(targetNumber) {
-      const startTime = performance.now(); // Get the current time
-      const startNumber = 1; // Start from 1
-      const endNumber = targetNumber; // Target number
-
-      const animate = (currentTime) => {
-        const elapsedTime = currentTime - startTime; // Calculate elapsed time
-        const progress = Math.min(elapsedTime / this.animationDuration, 1); // Normalize progress
-        this.animatedCount = Math.floor(
-          startNumber + (endNumber - startNumber) * progress
-        ); // Update count
-
-        if (progress < 1) {
-          requestAnimationFrame(animate); // Request next animation frame
-        }
-      };
-
-      requestAnimationFrame(animate); // Start the animation
+    calculateReturns() {
+      const percentage = 0.17;
+      this.annualReturn = this.amount * percentage;
+      this.monthlyReturn = this.annualReturn / 12;
     },
   },
   mounted() {
-    // Start animation for each client when component is mounted
-    this.clients.forEach((client) => {
-      this.animateNumber(client.number);
-    });
+    this.calculateReturns(); // Calculate initial returns
   },
 };
 </script>
 
-<style>
-.contact-button {
-  all: unset;
-  width: 100px;
-  height: 30px;
-  font-size: 16px;
-  background: transparent;
-  align-items: center;
-  align-content: center;
-  border: none;
-  position: relative;
-  color: #f0f0f0;
-  cursor: pointer;
-  z-index: 1;
-  padding: 10px 20px;
-  margin: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.contact-button::after,
-.contact-button::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: -99999;
-  transition: all 0.4s;
-}
-
-.contact-button::before {
-  transform: translate(0%, 0%);
+<style scoped>
+.calculator {
+  margin: 60px auto; /* Added vertical margin */
   width: 100%;
-  height: 100%;
-  background: #2947a9;
+  max-width: 700px;
+  padding: 30px; /* Increased padding for a spacious look */
+  border: 1px solid #ddd;
   border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.contact-button::after {
-  transform: translate(10px, 10px);
-  width: 35px;
-  height: 35px;
-  background: #ffffff15;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-radius: 50px;
+h2 {
+  text-align: center;
+  color: #2947a9;
 }
 
-.contact-button:hover::before {
-  transform: translate(5%, 20%);
-  width: 110%;
-  height: 110%;
-}
-
-.contact-button:hover::after {
-  border-radius: 10px;
-  transform: translate(0, 0);
-  width: 100%;
-  height: 100%;
-}
-
-.contact-button:active::after {
-  transition: 0s;
-  transform: translate(0, 5%);
-}
-.our-number {
+.slider-container {
   display: flex;
-}
-.our-number {
-  display: flex;
-  flex-direction: row; /* جعل المحتوى عمودي */
-  align-items: center; /* محاذاة المحتوى في المنتصف */
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
-.company-info {
-  align-items: center;
-  align-content: center;
-  text-align: center; /* محاذاة النص في المنتصف */
-  margin-bottom: 20px; /* هامش أسفل القسم */
-}
-p {
+label {
   font-weight: bold;
-  font-size: 30px;
-}
-.card-container {
-  margin-top: 40px;
-  background-color: white;
-  margin: 30px;
-  display: flex; /* استخدام flexbox */
-  flex-wrap: wrap; /* السماح للبطاقات بالالتفاف */
-  justify-content: center; /* مركزية العناصر */
-  gap: 80px; /* المسافة بين البطاقات */
-  padding: 20px; /* تباعد حول الحاوية */
+  color: #2947a9;
 }
 
-.card {
-  position: relative; /* ضبط الموضع النسبي للبطاقة */
-  background-color: #fff; /* خلفية بيضاء للبطاقة */
-  border-radius: 10px; /* زوايا دائرية */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-  padding: 20px; /* تباعد داخلي */
-  text-align: center; /* محاذاة النص في المنتصف */
-  width: 200px; /* عرض ثابت للبطاقات */
-  margin: 10px; /* تباعد خارجي */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
 }
 
-.card-image {
-  position: absolute; /* ضبط الصورة بشكل مطلق */
-  top: -40px; /* رفع الصورة للأعلى */
-  right: -40px; /* دفع الصورة لليمين */
-  width: 80px; /* عرض ثابت للصورة */
-  height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
-  border-radius: 10px; /* زوايا دائرية للصورة */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف للصورة */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2947a9;
+  cursor: pointer;
 }
 
-.card-title {
-  font-size: 1.5em; /* حجم خط أكبر للعنوان */
-  color: #333; /* لون داكن للعنوان */
-  margin-bottom: 10px; /* مسافة أسفل العنوان */
+.amount-display {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #2947a9;
+  text-align: center;
 }
 
-.client-number {
-  font-size: 2.5em; /* حجم خط أكبر للرقم */
-  color: #007bff; /* لون رئيسي */
-  margin: 10px 0; /* مسافة أعلى وأسفل */
+.results {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
 }
 
-.percentage-button {
-  background-color: #28a745; /* خلفية خضراء للزر */
-  color: white; /* نص أبيض */
-  border: none; /* لا حدود */
-  border-radius: 5px; /* زوايا دائرية للزر */
-  padding: 10px 20px; /* تباعد داخلي */
-  font-size: 1em; /* حجم خط الزر */
-  cursor: pointer; /* مؤشر زر */
-  transition: background-color 0.3s; /* تغيير الخلفية بسلاسة */
+.return-box {
+  background-color: #e6f0ff; /* Light background color */
+  border: 2px solid #2947a9; /* Border color */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding inside the box */
+  margin-bottom: 10px; /* Space between boxes */
 }
 
-.percentage-button:hover {
-  background-color: #218838; /* أخضر داكن عند التمرير */
+.highlight {
+  color: #2947a9;
+  font-weight: bold;
+}
+/* Mobile Styles */
+@media (max-width: 780px) {
+  .calculator {
+    max-width: 80%;
+    margin: 20px; /* Reduced margin on mobile */
+    padding: 20px; /* Adjusted padding */
+  }
+
+  h2 {
+    font-size: 24px; /* Slightly smaller title on mobile */
+  }
+
+  input[type="range"] {
+    height: 8px; /* Smaller range slider */
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 15px; /* Smaller slider thumb */
+    height: 15px; /* Smaller slider thumb */
+  }
+
+  .amount-display {
+    font-size: 18px; /* Larger text for amount display */
+  }
+
+  .results {
+    padding: 15px; /* More padding for results on mobile */
+  }
+
+  .return-box {
+    padding: 15px; /* More padding inside return boxes */
+  }
 }
 </style>

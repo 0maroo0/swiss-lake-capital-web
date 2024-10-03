@@ -3,14 +3,24 @@
   <Home />
   <About />
   <ServicesView />
+  <!-- <VedioSlider /> -->
+  <Reviews />
+  <Contactus />
+  <FooterView />
+  <FloatingIcon />
 </template>
 
 <script>
 // @ is an alias to /src
 import NavBar from "@/components/nav.vue";
+import Reviews from "@/components/reviews.vue";
+import FloatingIcon from "@/components/floating_whatsapp.vue";
+// import VedioSlider from "@/components/vedio_slider.vue";
 import Home from "@/views/HomeView.vue";
 import About from "@/views/AboutView.vue";
+import Contactus from "@/views/contact_us.vue";
 import ServicesView from "@/views/ServicesView.vue";
+import FooterView from "@/views/footerView.vue";
 
 export default {
   name: "HomeView",
@@ -19,6 +29,11 @@ export default {
     Home,
     About,
     ServicesView,
+    // VedioSlider,
+    Contactus,
+    FooterView,
+    Reviews,
+    FloatingIcon,
   },
 };
 </script>

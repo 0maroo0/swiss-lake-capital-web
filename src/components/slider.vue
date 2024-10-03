@@ -1,190 +1,188 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-<!-- eslint-disable no-unused-vars -->
 <template>
-  <div class="container">
-    <div v-for="i in 3" :key="i" class="hs__wrapper">
-      <div class="hs__header">
-        <h2 class="hs__headline">Headline {{ i }}</h2>
-        <div class="hs__arrows">
-          <a
-            :class="['arrow', 'arrow-prev', { disabled: !canScrollPrev[i] }]"
-            @click="scroll(i, 'prev')"
-          ></a>
-          <a
-            :class="['arrow', 'arrow-next', { disabled: !canScrollNext[i] }]"
-            @click="scroll(i, 'next')"
-          ></a>
-        </div>
-      </div>
-      <ul
-        ref="scrollContainers"
-        :key="`scroll-${i}`"
-        class="hs"
-        @scroll="handleScroll(i)"
-      >
-        <li v-for="n in 20" :key="`${i}-${n}`" class="hs__item">
-          <div class="hs__item__image__wrapper">
-            <img
-              :src="`https://picsum.photos/id/${10 + n + i}/300/300`"
-              alt=""
-              class="hs__item__image"
-            />
-          </div>
-          <div class="hs__item__description">
-            <span class="hs__item__title">Amazing title {{ n }}</span>
-            <span class="hs__item__subtitle">some subtitle</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="description">
-      <h3>Description</h3>
+  <section id="media" class="section">
+    <div class="intro-text">
+      <h2>Capsules</h2>
       <p>
-        <strong>Work in progress</strong> – Horizontal scroll containers are
-        hyped right now...
+        Capsules are the new and smart way to sleep in a city. Based on a
+        pioneering idea from Japan, they are the eco-friendly answer to
+        overcrowded, expensive city centres.
       </p>
     </div>
-  </div>
+    <div class="gallery-container">
+      <div class="selected-image">
+        <img :src="selectedPhoto" alt="Selected Photo" />
+      </div>
+      <div class="thumbnails-container">
+        <div class="thumbnails">
+          <div
+            v-for="(photo, index) in photos"
+            :key="index"
+            class="thumbnail"
+            :class="{ active: selectedPhoto === photo }"
+            @click="selectPhoto(photo)"
+          >
+            <img :src="photo" alt="Thumbnail" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
-<!-- ?   -->
-<script>
-import { ref, nextTick } from "vue";
 
+<script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Slider",
-  setup() {
-    const canScrollPrev = ref({});
-    const canScrollNext = ref({});
-
-    const updateArrowStates = () => {
-      const containers = Array.isArray(this.$refs.scrollContainers)
-        ? this.$refs.scrollContainers
-        : [this.$refs.scrollContainers];
-
-      containers.forEach((container, i) => {
-        const scrollLeft = container.scrollLeft;
-        const maxScrollLeft = container.scrollWidth - container.clientWidth;
-
-        // Directly assign values to the reactive refs
-        canScrollPrev.value[i + 1] = scrollLeft > 0;
-        canScrollNext.value[i + 1] = scrollLeft < maxScrollLeft;
-      });
-    };
-
-    const scroll = (index, direction) => {
-      const container = this.$refs.scrollContainers[index - 1];
-      if (!container) return;
-
-      const scrollAmount = container.clientWidth / 2;
-      container.scrollBy({
-        left: direction === "next" ? scrollAmount : -scrollAmount,
-        behavior: "smooth",
-      });
-    };
-
-    const handleScroll = (index) => {
-      updateArrowStates(index);
-    };
-
+  data() {
     return {
-      canScrollPrev,
-      canScrollNext,
-      scroll,
-      handleScroll,
-      updateArrowStates,
+      photos: [
+        "https://greenmarmot.com/images/capsules/9_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/11_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/reception.jpg",
+        "https://greenmarmot.com/images/capsules/13_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/9_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/8_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/6_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/5_Kapselhotel.jpg",
+      ],
+      selectedPhoto:
+        "https://greenmarmot.com/images/capsules/5_Kapselhotel.jpg",
     };
   },
-  mounted() {
-    nextTick(() => {
-      this.updateArrowStates();
-    });
+  methods: {
+    selectPhoto(photo) {
+      this.selectedPhoto = photo;
+    },
   },
 };
 </script>
 
 <style scoped>
-.container {
-  max-width: 990px;
+.gallery-container {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  max-width: 1000px;
+  margin: 20px auto;
+  flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.intro-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.intro-text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #666;
+  max-width: 800px;
   margin: 0 auto;
-  background: #121212;
-  position: relative;
-  padding: 20px;
 }
 
-.hs {
-  display: flex;
-  overflow-x: scroll;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-  -webkit-overflow-scrolling: touch;
-  margin: 0 -20px;
+.selected-image {
+  flex: 4;
+  max-width: 80%;
+  min-width: 300px; /* Set minimum width for mobile */
 }
 
-.hs__header {
-  display: flex;
-  align-items: center;
+.selected-image img {
   width: 100%;
+  height: 500px; /* Maintain aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.hs__headline {
+.thumbnails-container {
   flex: 1;
+  max-width: 20%;
+  height: 500px;
+  overflow-y: auto;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
-.hs__arrows {
-  align-self: center;
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.arrow {
-  display: inline-block;
-  width: 18px;
-  height: 12px;
+.thumbnail {
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.arrow-prev::before,
-.arrow-next::before {
-  content: "";
-  display: block;
-  width: 18px;
-  height: 12px;
-  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgMTUgOSI+Cgk8cGF0aCBmaWxsPSIjMzMzMzMzIiBkPSJNNy44NjcgOC41NzRsLTcuMjItNy4yMi43MDctLjcwOEw3Ljg2NyA3LjE2IDE0LjA1Ljk4bC43MDYuNzA3Ii8+Cjwvc3ZnPgo=")
-    no-repeat center center;
-  filter: brightness(5);
-  background-size: contain;
-}
-
-.arrow-prev.disabled::before,
-.arrow-next.disabled::before {
-  filter: brightness(2);
-}
-
-.arrow-prev::before {
-  transform: rotate(90deg);
-}
-
-.arrow-next::before {
-  transform: rotate(-90deg);
-}
-
-.hs__item {
-  flex-shrink: 0;
-  width: calc(25% - 20px);
-  margin: 10px;
-}
-
-.hs__item__image__wrapper {
-  position: relative;
+.thumbnail img {
   width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
-.hs__item__image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.thumbnail.active {
+  transform: scale(1.05);
+  border: 2px solid #007bff;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .gallery-container {
+    display: flex;
+    flex-direction: column; /* Stack vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+    padding: 10px; /* Add padding around the container */
+  }
+
+  .selected-image {
+    max-width: 100%; /* Full width on mobile */
+    height: auto; /* Allow height to adjust */
+    margin-bottom: 10px; /* Space below the selected image */
+  }
+
+  .thumbnails-container {
+    display: flex; /* Ensure the container is a flexbox */
+    max-width: 100%; /* Full width for thumbnails */
+    overflow-x: auto; /* Allow horizontal scrolling for thumbnails */
+    padding: 10px 0; /* Add padding for aesthetics */
+  }
+
+  .thumbnails {
+    height: 40px;
+    display: flex; /* Ensure thumbnails are displayed in a row */
+    flex-direction: row; /* Display thumbnails in a row */
+    overflow-x: auto; /* Allow horizontal scrolling for thumbnails */
+    padding: 5px 0; /* Add padding for aesthetics */
+  }
+
+  .thumbnail {
+    flex: 0 0 auto; /* Prevent flex items from shrinking */
+    width: 70px; /* Set a fixed width for thumbnails on mobile */
+    margin-right: 10px; /* Space between thumbnails */
+  }
+
+  .thumbnail img {
+    width: 100%; /* Ensure the image fills the thumbnail */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners */
+  }
+
+  .selected-image img {
+    width: 100%; /* Full width for selected image */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 300px; /* Set a max height to control dimensions */
+    border-radius: 10px; /* Maintain border radius */
+    object-fit: cover; /* Crop the image to fill the space */
+  }
 }
 </style>

@@ -3,29 +3,61 @@
     <div class="logo">
       <img src="../assets/logo-swiss.png" />
     </div>
-    <div class="nav-links">
+    <div class="nav-links" :class="{ active: isMenuOpen }">
       <a href="#home">Home</a>
       <a href="#about">About Us</a>
-      <a href="#services">Our Services</a>
+      <a href="#services">Investment Calculator</a>
+      <a href="#media">Our Blog</a>
       <a href="#contact">Contact Us</a>
     </div>
+    <h4>
+      <span class="color1">Swiss</span>
+      <span class="color2"> lake</span>
+      <span class="color3"> capital</span>
+    </h4>
+    <button class="menu-toggle" @click="toggleMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </nav>
 </template>
 
 <script>
 export default {
   name: "NavBar",
+  data() {
+    return {
+      isMenuOpen: false,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+  },
 };
 </script>
 
 <style scoped>
+.color1 {
+  color: #f9995d; /* Orange color */
+}
+
+.color2 {
+  color: #2947a9; /* Blue color */
+}
+
+.color3 {
+  color: green; /* Green color */
+}
 img {
   height: 100px;
   width: 100px;
 }
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
@@ -64,5 +96,38 @@ img {
 
 .nav-links a:active {
   transform: scale(0.95); /* Subtle shrinking effect when clicked */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide links by default */
+    flex-direction: column; /* Stack links vertically */
+    position: absolute;
+    top: 60px; /* Position below navbar */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff; /* Background color for mobile menu */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
+    padding: 10px 0; /* Padding for links */
+  }
+
+  .nav-links.active {
+    display: flex; /* Show links when menu is open */
+  }
+
+  .menu-toggle {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: #2c3e50; /* Color of the menu bars */
+    margin: 3px 0; /* Spacing between bars */
+  }
 }
 </style>

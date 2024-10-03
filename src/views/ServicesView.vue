@@ -1,72 +1,5 @@
 <template>
   <section id="services" class="section">
-    <div class="services">
-      <h2>Services</h2>
-      <div class="cards-container">
-        <div class="card">
-          <div class="icon">
-            <img src="../assets/icon.png" alt="Icon 1" />
-          </div>
-          <h3>Quality Service</h3>
-          <hr />
-          <p>
-            We provide high-quality services to meet your needs and exceed
-            expectations.
-          </p>
-        </div>
-        <div class="card">
-          <div class="icon">
-            <img src="../assets/icon2.png" alt="Icon 2" />
-          </div>
-          <h3>Reliability</h3>
-          <hr />
-          <p>
-            Our commitment to reliability ensures that you can trust us to time.
-          </p>
-        </div>
-        <div class="card">
-          <div class="icon">
-            <img src="../assets/icon.png" alt="Icon 3" />
-          </div>
-          <h3>Customer Satisfaction</h3>
-          <hr />
-          <p>
-            We prioritize customer satisfaction to build lasting relationships.
-          </p>
-        </div>
-        <div class="card">
-          <div class="icon">
-            <img src="../assets/icon.png" alt="Icon 1" />
-          </div>
-          <h3>Quality Service</h3>
-          <hr />
-          <p>
-            We provide high-quality services to meet your needs and exceed
-            expectations.
-          </p>
-        </div>
-        <div class="card">
-          <div class="icon">
-            <img src="../assets/icon2.png" alt="Icon 2" />
-          </div>
-          <h3>Reliability</h3>
-          <hr />
-          <p>
-            Our commitment to reliability ensures that you can trust us to time.
-          </p>
-        </div>
-        <div class="card">
-          <div class="icon">
-            <img src="../assets/icon.png" alt="Icon 3" />
-          </div>
-          <h3>Customer Satisfaction</h3>
-          <hr />
-          <p>
-            We prioritize customer satisfaction to build lasting relationships.
-          </p>
-        </div>
-      </div>
-    </div>
     <OurNumber />
     <ContactWithNumber />
     <Slider />
@@ -107,7 +40,7 @@ h2 {
 .cards-container {
   display: flex;
   justify-content: space-around;
-  gap: 20px;
+  /* gap: 20px; */
   flex-wrap: wrap;
 }
 
@@ -154,5 +87,35 @@ hr {
   height: 1px;
   background-color: #ccc; /* Light grey color */
   margin: 20px 0; /* Add spacing around the divider */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .cards-container {
+    justify-content: center; /* Center cards on small screens */
+  }
+
+  .card {
+    width: 90%; /* Full width for mobile */
+    margin-bottom: 20px; /* Space between cards */
+  }
+
+  .about h2 {
+    font-size: 1.8rem; /* Smaller font size for mobile */
+  }
+
+  h2 {
+    padding-top: 30px; /* Adjust padding for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .card h3 {
+    font-size: 1.3rem; /* Smaller font size for headings on mobile */
+  }
+
+  .card p {
+    font-size: 0.9rem; /* Smaller font size for paragraphs on mobile */
+  }
 }
 </style>
