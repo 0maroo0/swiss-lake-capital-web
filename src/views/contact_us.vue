@@ -7,11 +7,14 @@
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2858.3326083070574!2d6.151577583058235!3d46.211103552835446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c65240874caa3%3A0x989130d4d80a02f0!2zUnVlIGRlIGxhIE5hdmlnYXRpb24gMywgMTIwMSBHZW7DqHZlLCDYs9mI2YrYs9ix2Kc!5e0!3m2!1sar!2seg!4v1727623046031!5m2!1sar!2seg"
           width="100%"
           height="100%"
-          style="border: 0"
+          style="border: 0; pointer-events: none"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
+        <div class="map-overlay">
+          <div class="map-label">Green marmot</div>
+        </div>
       </div>
 
       <!-- Contact Form -->
@@ -122,10 +125,28 @@ export default {
 }
 
 .map-container {
+  position: relative;
   flex: 1;
   border: 2px solid #007bff; /* Blue border for the map */
   border-radius: 8px 0 0 8px; /* Rounded corners */
   overflow: hidden;
+}
+.map-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Make sure overlay doesn't block iframe clicks */
+}
+
+.map-label {
+  // background-color: red;
+  color: black;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: 900;
 }
 
 form {

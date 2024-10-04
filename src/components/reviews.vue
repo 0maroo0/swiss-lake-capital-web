@@ -16,7 +16,7 @@
         <img :src="testimonial.image" alt="testimonial" />
         <div class="author">
           <h5>
-            {{ testimonial.author }} <span>{{ testimonial.source }}</span>
+            {{ testimonial.author }}
           </h5>
         </div>
       </div>
@@ -34,27 +34,39 @@ export default {
       testimonials: [
         {
           quote:
-            "Calvin: You know sometimes when I'm talking, my words can't keep up with my thoughts... I wonder why we think faster than we speak.",
-          image:
-            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample3.jpg",
-          author: "Calvin",
-          source: "LittleSnippets.net",
+            "Everything was fine, clean,hot water in the shower, bed very comfortable.",
+          image: "http://swisslakecapital.com/assets/ava-m.png",
+
+          author: "Marilyn",
+        },
+        {
+          quote: "I like it in general",
+          image: "http://swisslakecapital.com/assets/ava-n.png",
+
+          author: "Nervin",
         },
         {
           quote:
-            "Thank you. Before I begin, I'd like everyone to notice that my report is in a professional, clear plastic binder...",
-          image:
-            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample27.jpg",
-          author: "Max Conversion",
-          source: "LittleSnippets.net",
+            "Good value for money,easy to find.Comfy bed,,clean bathroom and kind staff",
+          image: "http://swisslakecapital.com/assets/ava-p.png",
+          author: "Pavan",
+        },
+        {
+          quote: "Perfect location clean bathroom.",
+          image: "http://swisslakecapital.com/assets/ava-p.png",
+
+          author: "Philip",
         },
         {
           quote:
-            "My behaviour is addictive functioning in a disease process of toxic co-dependency...",
-          image:
-            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample17.jpg",
-          author: "Eleanor Faint",
-          source: "LittleSnippets.net",
+            "Good stay. Recommended for the budget and very much reachable. Good food options nearby",
+          image: "http://swisslakecapital.com/assets/download.jpeg",
+          author: "Kirsty",
+        },
+        {
+          quote: "A wonderful new experience",
+          image: "http://swisslakecapital.com/assets/ava-e.png",
+          author: "Padraig",
         },
         // More testimonials can be added here...
       ],

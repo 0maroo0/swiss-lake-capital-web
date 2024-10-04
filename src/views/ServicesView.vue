@@ -2,13 +2,11 @@
   <section id="services" class="section">
     <OurNumber />
     <ContactWithNumber />
-    <Slider />
   </section>
 </template>
 <script>
 import OurNumber from "@/components/ourNumber.vue";
 import ContactWithNumber from "@/components/contact_with_number.vue";
-import Slider from "@/components/slider.vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "section",
@@ -16,7 +14,6 @@ export default {
     OurNumber,
     // eslint-disable-next-line vue/no-unused-components
     ContactWithNumber,
-    Slider,
   },
 };
 </script>

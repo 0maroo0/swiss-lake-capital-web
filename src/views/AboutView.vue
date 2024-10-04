@@ -27,34 +27,41 @@
       </div>
 
       <div class="about-us-section">
-        <img src="../assets/unsplash.png" alt="About Us" class="about-image" />
+        <img
+          src="https://greenmarmot.com/images/Logo/LOGO_Green.png"
+          alt="About Us"
+          class="about-image"
+        />
         <div class="about-content">
-          <h2>About Us</h2>
+          <h2>Partner</h2>
           <p>
-            With over 30 years of experience, we have established ourselves as a
-            leader in the construction industry, dedicated to delivering
-            top-quality projects and fostering lasting relationships with our
-            clients and partners.
-          </p>
-          <p>
-            Our mission is to innovate and excel in all our endeavors, providing
-            exceptional service and sustainable solutions that meet the evolving
-            needs of our customers.
-          </p>
-          <p>
-            We take pride in our commitment to quality, integrity, and customer
-            satisfaction, ensuring every project reflects our values and vision
-            for a better future.
+            Green marmot GmbH is a leading capsule hotel company in Switzerland
+            and one of our most promising partners They acquire through short
+            period a remarkable footprint in Zurich hotels reviews because of
+            their unique central location, high standard hygiene accomodation
+            and economic affordable prices
           </p>
         </div>
       </div>
     </div>
   </section>
+  <VedioSlider />
+  <Reviews />
+  <Slider />
 </template>
 
 <script>
+import VedioSlider from "@/components/vedio_slider.vue";
+import Reviews from "@/components/reviews.vue";
+import Slider from "@/components/slider.vue";
+
 export default {
   name: "ReputationSection",
+  components: {
+    VedioSlider,
+    Reviews,
+    Slider,
+  },
   data() {
     return {
       activeTab: 0,
@@ -98,12 +105,12 @@ export default {
           content:
             "Our Geneva capsule hotel offers modern, eco-friendly accommodation in the heart of the city, providing guests with convenient access to local attractions at affordable rates.",
         },
-        {
-          label: "Partners",
-          title: "invest in Experience",
-          content:
-            "The capsule hotel concept presents a unique solution for modern travelers, combining affordability with eco-conscious design to meet the needs of a diverse clientele.",
-        },
+        // {
+        //   label: "Partners",
+        //   title: "invest in Experience",
+        //   content:
+        //     "The capsule hotel concept presents a unique solution for modern travelers, combining affordability with eco-conscious design to meet the needs of a diverse clientele.",
+        // },
       ],
     };
   },
@@ -178,26 +185,29 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 40px;
+  margin: 20px auto; /* Reduced margin and centered */
+  padding: 20px;
   border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Limit the width to make it smaller */
+  background-color: #2947a9; /* Light background color for contrast */
 }
 
 .about-content {
-  padding: 30px;
-  background-color: #2947a9;
+  padding: 15px;
+  /* background-color: #2947a9; */
   color: white;
-  border-radius: 10px 0 0 10px;
-  position: relative;
-  z-index: 1;
-  width: 40%; /* Adjust the width for better layout */
+  border-radius: 0 10px 10px 0;
+  width: 60%; /* Adjusted for a balanced layout */
+  font-size: 0.9rem; /* Make text a bit smaller */
 }
 
 .about-image {
-  width: 60%;
-  height: auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px; /* Slightly rounded for a modern look */
   object-fit: cover;
+  margin-right: 15px; /* Space between image and text */
 }
 
 @media (max-width: 768px) {
@@ -213,8 +223,8 @@ export default {
   }
 
   .about-image {
-    width: 100%;
-    height: auto;
+    width: 100px;
+    height: 100px;
   }
   .container {
     max-width: 1200px;
@@ -272,6 +282,22 @@ export default {
   }
 
   @media (max-width: 768px) {
+    .about-us-section {
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .about-content {
+      width: 100%;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .about-image {
+      margin-bottom: 10px;
+    }
     .tabs {
       padding: 10px 0; /* Add some padding for better mobile view */
     }

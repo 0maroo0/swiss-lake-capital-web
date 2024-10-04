@@ -1,26 +1,28 @@
 <template>
-  <div class="contact_with_number">
-    <img alt="Vue logo" src="../assets/rewsr1.png" />
-    <div class="overlay consultation-section">
-      <div class="consultation-text">
-        <h2 class="section-title">
-          Free consultation with exceptional quality
-        </h2>
-        <p class="section-body">Just one call away: +20 1065840930</p>
+  <section id="meet">
+    <div class="contact_with_number">
+      <img alt="Vue logo" src="../assets/rewsr1.png" />
+      <div class="overlay consultation-section">
+        <div class="consultation-text">
+          <h2 class="section-title">
+            Free consultation with exceptional quality
+          </h2>
+          <p class="section-body">Just one call away: +20 1065840930</p>
+        </div>
+        <button class="consultation-button" @click="openDialog">
+          Meet With us
+        </button>
       </div>
-      <button class="consultation-button" @click="openDialog">
-        Meet With us
-      </button>
     </div>
-  </div>
 
-  <!-- Modal Dialog -->
-  <div v-if="showMeeting" class="modal">
-    <div class="modal-content">
-      <span class="close-button" @click="closeDialog">&times;</span>
-      <Meeting />
+    <!-- Modal Dialog -->
+    <div v-if="showMeeting" class="modal">
+      <div class="modal-content">
+        <span class="close-button" @click="closeDialog">&times;</span>
+        <Meeting />
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

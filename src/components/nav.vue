@@ -4,17 +4,18 @@
       <img src="../assets/logo-swiss.png" />
     </div>
     <div class="nav-links" :class="{ active: isMenuOpen }">
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#services">Investment Calculator</a>
-      <a href="#media">Our Blog</a>
-      <a href="#contact">Contact Us</a>
+      <a href="#home" @click="closeMenu">Home</a>
+      <a href="#review" @click="closeMenu">Review</a>
+      <a href="#media" @click="closeMenu">Our Blog</a>
+      <a href="#services" @click="closeMenu">Investment Calculator</a>
+      <a href="#meet" @click="closeMenu">scheduling meet</a>
+      <a href="#contact" @click="closeMenu">Contact Us</a>
     </div>
-    <h4>
+    <h2>
       <span class="color1">Swiss</span>
       <span class="color2"> lake</span>
       <span class="color3"> capital</span>
-    </h4>
+    </h2>
     <button class="menu-toggle" @click="toggleMenu">
       <span class="bar"></span>
       <span class="bar"></span>
@@ -34,6 +35,11 @@ export default {
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    closeMenu() {
+      if (window.innerWidth <= 768) {
+        this.isMenuOpen = false;
+      }
     },
   },
 };

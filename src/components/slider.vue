@@ -36,7 +36,16 @@ export default {
   data() {
     return {
       photos: [
-        "https://greenmarmot.com/images/capsules/9_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/3_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/7_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/10_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/14_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/61_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/62_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/double_capsule1.jpg",
+        "https://greenmarmot.com/images/capsules/double_capsule2.jpg",
+        "https://greenmarmot.com/images/capsules/double_capsule3.jpg",
+        "https://greenmarmot.com/images/capsules/single_capsule.jpg",
         "https://greenmarmot.com/images/capsules/11_Kapselhotel.jpg",
         "https://greenmarmot.com/images/capsules/reception.jpg",
         "https://greenmarmot.com/images/capsules/13_Kapselhotel.jpg",
@@ -46,7 +55,7 @@ export default {
         "https://greenmarmot.com/images/capsules/5_Kapselhotel.jpg",
       ],
       selectedPhoto:
-        "https://greenmarmot.com/images/capsules/5_Kapselhotel.jpg",
+        "https://greenmarmot.com/images/capsules/3_Kapselhotel.jpg",
     };
   },
   methods: {
