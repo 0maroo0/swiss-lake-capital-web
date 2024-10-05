@@ -4,13 +4,12 @@
     <div class="contact-us-container">
       <div class="map-container">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2858.3326083070574!2d6.151577583058235!3d46.211103552835446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c65240874caa3%3A0x989130d4d80a02f0!2zUnVlIGRlIGxhIE5hdmlnYXRpb24gMywgMTIwMSBHZW7DqHZlLCDYs9mI2YrYs9ix2Kc!5e0!3m2!1sar!2seg!4v1727623046031!5m2!1sar!2seg"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=6.1488037109375%2C46.20971286864415%2C6.1544036865234375%2C46.21236094350776&layer=mapnik&marker=46.211036236935785%2C6.15160346031189"
           width="100%"
           height="100%"
           style="border: 0; pointer-events: none"
           allowfullscreen=""
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
         <div class="map-overlay">
           <div class="map-label">Green marmot</div>
@@ -63,7 +62,7 @@
           ></textarea>
         </div>
 
-        <!-- Submit btn -->
+        <!-- Submit button -->
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Send message</button>
         </div>
@@ -89,7 +88,7 @@ export default {
         email: this.email,
         message: this.message,
       });
-      // You can add form handling logic here (like sending data to a server)
+      // Add form handling logic (e.g., sending data to a server)
     },
   },
 };
@@ -97,21 +96,21 @@ export default {
 
 <style scoped lang="scss">
 .contact-us {
-  font-size: 2em; /* Large font size */
-  color: #2c3e50; /* Dark color */
-  text-align: center; /* Centered text */
-  padding: 20px; /* Padding around the text */
-  margin: 20px 0; /* Margin above and below */
-  position: relative; /* Position for pseudo-element */
+  font-size: 2em;
+  color: #2c3e50;
+  text-align: center;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
 }
 
 .contact-us::after {
-  content: ""; /* Create a decorative line */
+  content: "";
   display: block;
-  width: 50px; /* Width of the line */
-  height: 4px; /* Height of the line */
-  background: #3498db; /* Color of the line */
-  margin: 10px auto 0; /* Center the line below the text */
+  width: 50px;
+  height: 4px;
+  background: #3498db;
+  margin: 10px auto 0;
 }
 
 .contact-us-container {
@@ -121,40 +120,40 @@ export default {
   margin: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  height: 600px; /* Set a fixed height for the layout */
+  height: 600px;
 }
 
 .map-container {
   position: relative;
   flex: 1;
-  border: 2px solid #007bff; /* Blue border for the map */
-  border-radius: 8px 0 0 8px; /* Rounded corners */
+  border: 2px solid #007bff;
+  border-radius: 8px 0 0 8px;
   overflow: hidden;
 }
+
 .map-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  pointer-events: none; /* Make sure overlay doesn't block iframe clicks */
+  pointer-events: none;
 }
 
 .map-label {
-  // background-color: red;
   color: black;
   padding: 10px;
   font-size: 14px;
   border-radius: 5px;
   font-weight: bold;
-  text-align: 900;
+  text-align: center; /* Use center instead of 900 */
 }
 
 form {
   flex: 1;
   padding: 20px;
-  background-color: #f8f9fa; /* Light background color */
-  border: 2px solid; /* Blue border for the form */
-  border-radius: 0 8px 8px 0; /* Rounded corners */
+  background-color: #f8f9fa;
+  border: 2px solid;
+  border-radius: 0 8px 8px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -164,7 +163,7 @@ form {
   font-family: "Pacifico", cursive;
   color: #212529;
   font-size: 2.5rem;
-  margin-bottom: 20px; /* Margin below title */
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -191,11 +190,11 @@ textarea {
 
 input:focus,
 textarea:focus {
-  border-color: wheat; /* Blue border on focus */
+  border-color: wheat;
 }
 
 textarea {
-  resize: none; /* Disable resizing for textarea */
+  resize: none;
 }
 
 .btn.btn-primary {
@@ -218,33 +217,34 @@ textarea {
 /* Mobile Styles */
 @media (max-width: 768px) {
   .contact-us-container {
-    flex-direction: column; /* Stack map and form on mobile */
-    height: auto; /* Remove fixed height for mobile */
+    flex-direction: column;
+    height: auto;
     width: 95%;
   }
 
   .map-container {
-    border-radius: 8px 8px 0 0; /* Rounded corners on top */
-    height: 300px; /* Set a smaller height for the map */
+    border-radius: 8px 8px 0 0;
+    height: 300px;
   }
 
   form {
-    border-radius: 0 0 8px 8px; /* Rounded corners on bottom */
-    padding: 35px; /* Reduce padding on mobile */
+    border-radius: 0 0 8px 8px;
+    padding: 35px;
   }
 
   .title {
-    font-size: 2rem; /* Smaller title on mobile */
+    font-size: 2rem;
   }
 
   input,
   textarea {
-    font-size: 1rem; /* Smaller input and textarea font size */
+    font-size: 1rem;
   }
 
   .btn.btn-primary {
-    padding: 10px; /* Smaller button padding */
-    font-size: 1rem; /* Smaller button font size */
+    // eslint-disable-next-line prettier/prettier
+    padding: 10px;
+    font-size: 1rem;
   }
 }
 </style>

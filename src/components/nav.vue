@@ -5,17 +5,15 @@
     </div>
     <div class="nav-links" :class="{ active: isMenuOpen }">
       <a href="#home" @click="closeMenu">Home</a>
-      <a href="#review" @click="closeMenu">Review</a>
-      <a href="#media" @click="closeMenu">Our Blog</a>
       <a href="#services" @click="closeMenu">Investment Calculator</a>
       <a href="#meet" @click="closeMenu">scheduling meet</a>
       <a href="#contact" @click="closeMenu">Contact Us</a>
     </div>
-    <h2>
+    <h1 class="logo-swiss">
       <span class="color1">Swiss</span>
       <span class="color2"> lake</span>
       <span class="color3"> capital</span>
-    </h2>
+    </h1>
     <button class="menu-toggle" @click="toggleMenu">
       <span class="bar"></span>
       <span class="bar"></span>
@@ -44,8 +42,12 @@ export default {
   },
 };
 </script>
-
 <style scoped>
+.logo-swiss {
+  font-family: "Protest Strike", sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
 .color1 {
   color: #f9995d; /* Orange color */
 }
@@ -57,10 +59,12 @@ export default {
 .color3 {
   color: green; /* Green color */
 }
+
 img {
-  height: 100px;
-  width: 100px;
+  height: 150px; /* Reduced logo height */
+  width: 150px; /* Reduced logo width */
 }
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -68,7 +72,7 @@ img {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 5px 10px; /* Increased padding for more breathing room */
+  padding: 5px 10px; /* Reduced padding */
   background-color: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow */
   z-index: 1000;
@@ -77,13 +81,13 @@ img {
 .logo h3 {
   margin: 0;
   font-family: "Poppins", sans-serif; /* Modern font style */
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1.2rem; /* Reduced font size */
   color: #f9995d; /* Logo color matching hover effect */
 }
 
 .nav-links {
   display: flex;
-  gap: 30px; /* Increased gap for better spacing */
+  gap: 15px; /* Reduced gap for better spacing */
 }
 
 .nav-links a {
@@ -91,7 +95,7 @@ img {
   font-weight: bold;
   color: #2c3e50;
   font-family: "Poppins", sans-serif; /* Modern font style */
-  font-size: 1.1rem; /* Adjusted font size for better readability */
+  font-size: 0.9rem; /* Adjusted font size for better readability */
   transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
 }
 
@@ -106,11 +110,20 @@ img {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+  img {
+    height: 100px; /* Reduced logo height */
+    width: 100px; /* Reduced logo width */
+  }
+  .color1,
+  .color2,
+  .color3 {
+    font-size: 20px; /* Reduced font size for mobile */
+  }
   .nav-links {
     display: none; /* Hide links by default */
     flex-direction: column; /* Stack links vertically */
     position: absolute;
-    top: 60px; /* Position below navbar */
+    top: 50px; /* Position below navbar */
     left: 0;
     width: 100%;
     background-color: #ffffff; /* Background color for mobile menu */
@@ -123,14 +136,14 @@ img {
   }
 
   .menu-toggle {
-    margin: 30px;
+    margin: 20px; /* Reduced margin for the menu toggle */
     display: flex;
     flex-direction: column;
     cursor: pointer;
   }
 
   .menu-toggle .bar {
-    height: 3px;
+    height: 2px; /* Reduced height for the menu bars */
     width: 25px;
     background-color: #2c3e50; /* Color of the menu bars */
     margin: 3px 0; /* Spacing between bars */

@@ -18,6 +18,7 @@ export default {
 
 <style scoped>
 .home {
+  margin-top: 50px; /* Maintain margin at the top */
   position: relative;
   width: 100%;
   height: 100vh; /* Full viewport height */
@@ -77,5 +78,10 @@ export default {
     font-size: 30px; /* Smaller font size for mobile */
     line-height: 1.2; /* Adjust line height for better readability */
   }
+}
+
+/* Added margin for the section below the navbar */
+.section {
+  padding-top: 70px; /* Ensure this matches the height of the navbar */
 }
 </style>
