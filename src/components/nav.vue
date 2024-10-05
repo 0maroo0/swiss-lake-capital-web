@@ -44,19 +44,24 @@ export default {
 </script>
 <style scoped>
 .logo-swiss {
-  font-family: "Protest Strike", sans-serif;
+  font-family: "Inconsolata", monospace;
   font-weight: bold;
   letter-spacing: 2px;
 }
 .color1 {
+  font-size: 35px;
   color: #f9995d; /* Orange color */
 }
 
 .color2 {
+  font-size: 35px;
+
   color: #2947a9; /* Blue color */
 }
 
 .color3 {
+  font-size: 35px;
+
   color: green; /* Green color */
 }
 

@@ -86,12 +86,13 @@
           ></a>
         </div>
         <div class="footer-partner">
-          <span>Our Partner:</span>
+          <span></span>
           <img
             src="https://greenmarmot.com/images/Logo/LOGO_Green.png"
             alt="Green Marmot"
             class="partner-logo"
           />
+          <p>Green marmot GmbH</p>
         </div>
       </div>
     </div>
@@ -173,7 +174,7 @@
 }
 
 .footer .logo {
-  max-width: 150px; /* Adjusted logo size for better fit */
+  max-width: 200px; /* Adjusted logo size for better fit */
   height: auto;
 }
 

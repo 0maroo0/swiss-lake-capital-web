@@ -1,13 +1,5 @@
 <template>
   <section id="media" class="section">
-    <div class="intro-text">
-      <h2>Capsules</h2>
-      <p>
-        Capsules are the new and smart way to sleep in a city. Based on a
-        pioneering idea from Japan, they are the eco-friendly answer to
-        overcrowded, expensive city centres.
-      </p>
-    </div>
     <div class="gallery-container">
       <div class="selected-image">
         <img :src="selectedPhoto" alt="Selected Photo" />

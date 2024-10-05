@@ -4,16 +4,18 @@
     <div class="contact-us-container">
       <div class="map-container">
         <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=6.1488037109375%2C46.20971286864415%2C6.1544036865234375%2C46.21236094350776&layer=mapnik&marker=46.211036236935785%2C6.15160346031189"
-          width="100%"
-          height="100%"
-          style="border: 0; pointer-events: none"
-          allowfullscreen=""
-          loading="lazy"
+          width="640"
+          height="180"
+          src="https://www.mapillary.com/embed?map_style=Mapillary%20light&image_key=2561886500771534&x=0.5&y=0.5&style=photo"
+          frameborder="0"
         ></iframe>
         <div class="map-overlay">
           <div class="map-label">Green marmot</div>
         </div>
+        <a
+          href="https://www.mapillary.com/app/?pKey=2561886500771534&focus=photo"
+          ><img src="../assets/Greenmarmot_map.png"
+        /></a>
       </div>
 
       <!-- Contact Form -->
@@ -140,7 +142,7 @@ export default {
 }
 
 .map-label {
-  color: black;
+  color: green;
   padding: 10px;
   font-size: 14px;
   border-radius: 5px;
