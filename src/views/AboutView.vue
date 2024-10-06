@@ -12,10 +12,14 @@
         </div>
       </div>
 
+      <!-- Capsule Hotel Concept Slider Only -->
+      <Slider v-if="activeTab === capsuleHotelConceptIndex" />
+
+      <!-- Display content of all other tabs except "Capsule Hotel Concept" -->
       <div
         v-for="(tab, index) in tabs"
         :key="index"
-        v-show="activeTab === index"
+        v-show="activeTab === index && index !== capsuleHotelConceptIndex"
         class="tab-content"
       >
         <h2>{{ tab.title }}</h2>
@@ -25,8 +29,6 @@
           <p class="highlight-equation">{{ tab.content.equation }}</p>
         </div>
       </div>
-      <!-- Show Slider only if "Capsule Hotel Concept" tab is active -->
-      <Slider v-if="activeTab === capsuleHotelConceptIndex" />
 
       <div class="about-us-section">
         <img
@@ -105,6 +107,7 @@ export default {
         {
           label: "Capsule Hotel Concept",
           title: "Redefining Travel",
+          previewImage: "path/to/preview-image.jpg",
           content:
             "Capsules are the new and smart way to sleep in a city based on a pioneering idea from Japan, they are the eco-friendly answer to overcrowded and expensive city centers. The capsule hotel concept is the answer for modern green travelers on a low to moderate budget.",
         },

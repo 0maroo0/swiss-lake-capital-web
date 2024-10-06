@@ -2,78 +2,86 @@
   <section id="contact" class="contact">
     <h2 class="contact-us">Contact Us</h2>
     <div class="contact-us-container">
-      <div class="map-container">
-        <iframe
-          width="640"
-          height="180"
-          src="https://www.mapillary.com/embed?map_style=Mapillary%20light&image_key=2561886500771534&x=0.5&y=0.5&style=photo"
-          frameborder="0"
-        ></iframe>
-        <div class="map-overlay">
-          <div class="map-label">Green marmot</div>
+      <!-- Map & Contact Form in Row -->
+      <div class="row-container">
+        <div class="map-container">
+          <iframe
+            src="https://www.mapillary.com/embed?map_style=Mapillary%20light&image_key=2561886500771534&x=0.5&y=0.5&style=photo"
+            frameborder="0"
+          ></iframe>
         </div>
-        <a
-          href="https://www.mapillary.com/app/?pKey=2561886500771534&focus=photo"
-          ><img src="../assets/Greenmarmot_map.png"
-        /></a>
+
+        <!-- Contact Form -->
+        <form @submit.prevent="handleSubmit">
+          <h1 class="title text-center mb-4">Talk to Us</h1>
+
+          <!-- Name -->
+          <div class="form-group position-relative">
+            <label for="formName" class="d-block">
+              <i class="icon" data-feather="user"></i>
+            </label>
+            <input
+              type="text"
+              id="formName"
+              class="form-control form-control-lg thick"
+              placeholder="Name"
+              v-model="name"
+              required
+            />
+          </div>
+
+          <!-- E-mail -->
+          <div class="form-group position-relative">
+            <label for="formEmail" class="d-block">
+              <i class="icon" data-feather="mail"></i>
+            </label>
+            <input
+              type="email"
+              id="formEmail"
+              class="form-control form-control-lg thick"
+              placeholder="E-mail"
+              v-model="email"
+              required
+            />
+          </div>
+
+          <!-- Message -->
+          <div class="form-group message">
+            <textarea
+              id="formMessage"
+              class="form-control form-control-lg"
+              rows="7"
+              placeholder="Your Message"
+              v-model="message"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Submit button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Send message</button>
+          </div>
+        </form>
       </div>
 
-      <!-- Contact Form -->
-      <form @submit.prevent="handleSubmit">
-        <h1 class="title text-center mb-4">Talk to Us</h1>
-
-        <!-- Name -->
-        <div class="form-group position-relative">
-          <label for="formName" class="d-block">
-            <i class="icon" data-feather="user"></i>
-          </label>
-          <input
-            type="text"
-            id="formName"
-            class="form-control form-control-lg thick"
-            placeholder="Name"
-            v-model="name"
-            required
+      <!-- Map Image Below Row -->
+      <div class="map-image-container">
+        <a
+          href="https://www.mapillary.com/app/?pKey=2561886500771534&focus=photo"
+        >
+          <img
+            src="../assets/Greenmarmot_map.png"
+            alt="Map Thumbnail"
+            class="map-image"
           />
-        </div>
-
-        <!-- E-mail -->
-        <div class="form-group position-relative">
-          <label for="formEmail" class="d-block">
-            <i class="icon" data-feather="mail"></i>
-          </label>
-          <input
-            type="email"
-            id="formEmail"
-            class="form-control form-control-lg thick"
-            placeholder="E-mail"
-            v-model="email"
-            required
-          />
-        </div>
-
-        <!-- Message -->
-        <div class="form-group message">
-          <textarea
-            id="formMessage"
-            class="form-control form-control-lg"
-            rows="7"
-            placeholder="Your Message"
-            v-model="message"
-            required
-          ></textarea>
-        </div>
-
-        <!-- Submit button -->
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Send message</button>
-        </div>
-      </form>
+        </a>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "ContactUs",
   data() {
@@ -84,18 +92,36 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      console.log("Form submitted:", {
-        name: this.name,
-        email: this.email,
-        message: this.message,
-      });
-      // Add form handling logic (e.g., sending data to a server)
+    async handleSubmit() {
+      try {
+        console.log("Form submitted:", {
+          name: this.name,
+          email: this.email,
+          message: this.message,
+        });
+
+        // Prepare form data
+        const formData = new FormData();
+        formData.append("name", this.name);
+        formData.append("email", this.email);
+        formData.append("message", this.message);
+
+        // Send POST request
+        const response = await axios.post(
+          "https://morabrand.net/bemocode/public/api/sendmail",
+          formData
+        );
+        console.log("Response:", response.data);
+
+        // Handle success (e.g., show a success message)
+      } catch (error) {
+        console.error("Error sending data:", error);
+        // Handle error (e.g., show an error message)
+      }
     },
   },
 };
 </script>
-
 <style scoped lang="scss">
 .contact-us {
   font-size: 2em;
@@ -117,45 +143,40 @@ export default {
 
 .contact-us-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  height: 600px;
+  height: auto;
 }
 
-.map-container {
-  position: relative;
+.row-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.map-container,
+form {
   flex: 1;
   border: 2px solid #007bff;
-  border-radius: 8px 0 0 8px;
+  border-radius: 8px;
   overflow: hidden;
+  margin-right: 20px;
 }
 
-.map-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.map-label {
-  color: green;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center; /* Use center instead of 900 */
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 form {
-  flex: 1;
   padding: 20px;
   background-color: #f8f9fa;
-  border: 2px solid;
-  border-radius: 0 8px 8px 0;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -216,22 +237,29 @@ textarea {
   background-color: #0f39c1;
 }
 
+.map-image-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
-  .contact-us-container {
+  .row-container {
     flex-direction: column;
-    height: auto;
-    width: 95%;
   }
 
-  .map-container {
-    border-radius: 8px 8px 0 0;
-    height: 300px;
-  }
-
+  .map-container,
   form {
-    border-radius: 0 0 8px 8px;
-    padding: 35px;
+    margin-right: 0;
+    margin-bottom: 20px;
   }
 
   .title {
@@ -244,7 +272,6 @@ textarea {
   }
 
   .btn.btn-primary {
-    // eslint-disable-next-line prettier/prettier
     padding: 10px;
     font-size: 1rem;
   }

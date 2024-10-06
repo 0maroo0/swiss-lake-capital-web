@@ -12,7 +12,7 @@
         itemtype="http://schema.org/Organization"
       >
         <img
-          src="../assets/logo_transp.png"
+          src="../assets/logo-swiss.png"
           alt="Logo"
           itemprop="logo"
           class="u-logo logo"
@@ -174,7 +174,7 @@
 }
 
 .footer .logo {
-  max-width: 200px; /* Adjusted logo size for better fit */
+  max-width: 300px; /* Adjusted logo size for better fit */
   height: auto;
 }
 
