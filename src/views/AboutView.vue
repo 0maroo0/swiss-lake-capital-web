@@ -19,7 +19,7 @@
       <div
         v-for="(tab, index) in tabs"
         :key="index"
-        v-show="activeTab === index && index !== capsuleHotelConceptIndex"
+        v-show="activeTab === index"
         class="tab-content"
       >
         <h2>{{ tab.title }}</h2>
